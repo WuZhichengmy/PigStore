@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhicheng.pigstore.mapper.CategoryMapper">
+
+    <insert id="save" parameterType="com.wuzhicheng.pigstore.entity.Category">
+        insert into pigstore.category values (#{id},#{type},#{name},#{sort},#{createTime},#{updateTime},#{createUser},#{updateUser});
+    </insert>
+    <update id="updateById" parameterType="com.wuzhicheng.pigstore.entity.Category">
+        update pigstore.category
+        set type=#{type},name=#{name},sort=#{sort},create_time=#{createTime},update_time=#{updateTime},create_user=#{createUser},update_user=#{updateUser}
+        where id=#{id};
+    </update>
+    <delete id="removeById">
+        delete from pigstore.category
+        where id=#{id};
+    </delete>
+    <select id="selectByPage" resultType="com.wuzhicheng.pigstore.entity.Category">
+        select * from pigstore.category
+        order by sort
+        limit #{begin},#{end};
+    </select>
+    <select id="getLength" resultType="java.lang.Integer">
+        select count(*)
+        from pigstore.category;
+    </select>
+    <select id="selectByType" resultType="com.wuzhicheng.pigstore.entity.Category">
+        select * from pigstore.category
+        where type=#{type}
+        order by sort;
+    </select>
+    <select id="getById" resultType="com.wuzhicheng.pigstore.entity.Category">
+        select * from pigstore.category
+        where id=#{id};
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhicheng.pigstore.mapper.DishMapper">
+    <insert id="insert">
+        insert into pigstore.dish
+        values (#{id},#{name},#{categoryId},#{price},#{code},#{image},#{description},#{status},#{sort},#{createTime},#{updateTime},#{createUser},#{updateUser},#{isDeleted});
+    </insert>
+    <update id="updateById">
+        update pigstore.dish
+        set id=#{id},name=#{name},category_id=#{categoryId},price=#{price},code=#{code},image=#{image},description=#{description},status=#{status},sort=#{sort},create_time=#{createTime},update_time=#{updateTime},create_user=#{createUser},update_user=#{updateUser},is_deleted=#{isDeleted}
+        where id=#{id};
+    </update>
+    <select id="selectByCid" resultType="com.wuzhicheng.pigstore.entity.Dish">
+        select * from pigstore.dish
+        where category_id=#{cid};
+    </select>
+    <select id="selectByPage" resultType="com.wuzhicheng.pigstore.entity.Dish">
+        select * from pigstore.dish
+        where name=#{name} or #{name} like 'null'
+        order by update_time
+        limit #{begin},#{end};
+    </select>
+    <select id="getLength" resultType="java.lang.Integer">
+        select count(*) from pigstore.dish;
+    </select>
+    <select id="getById" resultType="com.wuzhicheng.pigstore.entity.Dish">
+        select * from pigstore.dish
+        where id=#{id};
+    </select>
+</mapper>

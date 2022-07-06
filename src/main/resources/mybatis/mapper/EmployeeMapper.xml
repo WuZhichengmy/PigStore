@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhicheng.pigstore.mapper.EmployeeMapper">
+    <insert id="addItem">
+        insert into pigstore.employee values (123,'wuzhicheng','abc','123456');
+    </insert>
+    <insert id="save" parameterType="com.wuzhicheng.pigstore.entity.Employee" useGeneratedKeys="true" keyProperty="id">
+        insert into pigstore.employee values (#{id},#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{status},#{createTime},#{updateTime},#{createUser},#{updateUser});
+    </insert>
+    <update id="update">
+        update pigstore.employee
+        set name=#{name},username=#{username},password=#{password},phone=#{phone},sex=#{sex},id_number=#{idNumber},status=#{status},create_time=#{createTime},update_time=#{updateTime},create_user=#{createUser},update_user=#{updateUser}
+        where id=#{id}
+    </update>
+
+    <select id="selectByUsername" resultType="com.wuzhicheng.pigstore.entity.Employee">
+        select * from pigstore.employee where username=#{username};
+    </select>
+    <select id="selectAll" resultType="com.wuzhicheng.pigstore.entity.Employee">
+        select * from pigstore.employee;
+    </select>
+    <select id="selectByPage" resultType="com.wuzhicheng.pigstore.entity.Employee">
+        select * from pigstore.employee
+        where name=#{name} or #{name} like 'null'
+        order by update_time
+        limit #{begin},#{end};
+    </select>
+    <select id="getLength" resultType="java.lang.Integer">
+        select count(*) from pigstore.employee;
+    </select>
+    <select id="selectById" resultType="com.wuzhicheng.pigstore.entity.Employee">
+        select * from pigstore.employee where id=#{id};
+    </select>
+</mapper>

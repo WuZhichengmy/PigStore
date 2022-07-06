@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: pigstore
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///pigstore
+    username: root
+    password: 15980525898Wu
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mybatis/mapper/*.xml
+file:
+  path: D:\
